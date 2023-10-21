@@ -1,0 +1,36 @@
+[alias]
+    ada = add -A
+    co = commit -v
+    ca = commit -v --amend
+    com = commit -v -m
+    cof = commit -v --fixup=HEAD
+    ri = !sh -c 'git rebase --autosquash -i HEAD~$0'
+    cb = "!f() { git b | grep $1 | xargs git ch; }; f"
+    ch = checkout
+    chm = checkout main
+    st = status
+    pl = pull
+    plm = pull origin main
+    ph = push origin HEAD -u
+    phf = push origin HEAD --force-with-lease
+    chb = checkout -b
+    chbo = "!f() { git checkout -b $1 origin/$1; };f"
+    b = branch
+    br = branch -r
+    ba = branch -a
+    bd = branch -d
+    bD = branch -D
+    bm = branch -m
+    bc = rev-parse --abbrev-ref HEAD
+    fe = fetch
+    s = switch
+    sc = switch -c
+    sco = "!f() { git swtich -c $1 origin/$1; };f"
+    stl = stash list
+    stm = stash save -u -m
+    stp = "!f() { git stl | awk -F : '{print $1}' | grep $1 | xargs git stash pop; }; f"
+    sta = "!f() { git stl | awk -F : '{print $1}' | grep $1 | xargs git stash apply; }; f"
+    re = reset
+    res = reset --soft HEAD^
+    lg = log
+    lgp = log --oneline
