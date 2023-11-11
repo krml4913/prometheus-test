@@ -1,64 +1,48 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.195.0/containers/javascript-node
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-in-docker
 {
-  "name": "TypescriptDevContainer",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
-  // Configure tool-specific properties.
-  "customizations": {
-    // Configure properties specific to VS Code.
-    "vscode": {
-      // Add the IDs of extensions you want installed when the container is created.
-      "extensions": [
-        "dbaeumer.vscode-eslint",
-        "sohamkamani.code-eol",
-        "esbenp.prettier-vscode",
-        "WallabyJs.quokka-vscode",
-      ],
-      "settings": {
-        "editor.formatOnSave": true,
-        "[javascript]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[json]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[jsonc]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[typescript]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[javascriptreact]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[typescriptreact]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
-        }
-      }
-    }
-  },
+	"name": "Docker in Docker",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
 
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [3000],
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"moby": true,
+			"azureDnsAutoDetection": true,
+			"installDockerBuildx": true,
+			"version": "latest",
+			"dockerDashComposeVersion": "v1"
+		},
+		"ghcr.io/devcontainers/features/aws-cli:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/git:1": {
+			"ppa": true,
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/java:1": {
+			"version": "latest",
+			"jdkDistro": "open",
+			"gradleVersion": "latest",
+			"mavenVersion": "latest",
+			"antVersion": "latest"
+		},
+		"ghcr.io/devcontainers/features/node:1": {
+			"nodeGypDependencies": true,
+			"version": "lts",
+			"nvmVersion": "latest"
+		}
+	},
 
-  // Use 'portsAttributes' to set default properties for specific forwarded ports. More info: https://code.visualstudio.com/docs/remote/devcontainerjson-reference.
-  "portsAttributes": {
-    "3000": {
-      "label": "Hello Remote World",
-      "onAutoForward": "notify"
-    }
-  },
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
 
-  // Use 'otherPortsAttributes' to configure any ports that aren't configured using 'portsAttributes'.
-  // "otherPortsAttributes": {
-  // 		"onAutoForward": "silent"
-  // },
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postStartCommand": ". /workspaces/prometheus-test/.devcontainer/init.sh"
 
-  // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "sudo corepack enable; corepack prepare yarn@stable --activate;",
+	// Configure tool-specific properties.
+	// "customizations": {},
 
-  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  //"remoteUser": "node"
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
 }
