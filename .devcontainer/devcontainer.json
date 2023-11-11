@@ -38,7 +38,15 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postStartCommand": ". /workspaces/prometheus-test/.devcontainer/init.sh"
+	"postStartCommand": ". /workspaces/prometheus-test/.devcontainer/init.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vscjava.vscode-java-pack",
+				"vmware.vscode-boot-dev-pack"
+			]
+		}
+	}
 
 	// Configure tool-specific properties.
 	// "customizations": {},
